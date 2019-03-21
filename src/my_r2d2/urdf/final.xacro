@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="final_robot">
 
-<material name="blue">
-    <color rgba="0 0 0.8 1"/>
+  <material name="blue">
+    <color rgba="0 0 0.8 2"/>
   </material>
   <material name="black">
-    <color rgba="0 0 0 1"/>
+    <color rgba="0 0 0 2"/>
   </material>
   <material name="white">
-    <color rgba="1 1 1 1"/>
+    <color rgba="1 1 1 2"/>
   </material>
 
   <link name="base_link">
@@ -394,18 +394,20 @@
 //-----------------------------------------------
 
 
-  <xacro:property name="box_param" value="0.8" /> 
+  <xacro:property name="box_param" value="0.08" />
 
-
-  <xacro:macro name="box_origin">
-    <origin xyz="-0.04 0 0"/>
+  <xacro:macro name="lens_geometry">
+    <geometry>
+      <cylinder radius="${box_param/3}" length="${box_param/4}"/>
+    </geometry>
   </xacro:macro>
-  <xacro:macro name="lens_visual">
-    <visual>
-      <geometry>
-        <cylinder 
-    
-      
+
+  <xacro:macro name="box_inertial">
+    <inertial>
+      <mass value="1"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+  </xacro:macro>
 
  
 
@@ -415,17 +417,14 @@
         <box size="${box_param} ${box_param} ${box_param}"/>
       </geometry>
       <material name="blue"/>
-      <xacro:box_origin/>
+      <origin xyz = "-0.04 0 0"/>
     </visual>
     <collision>
       <geometry>
         <box size="${box_param} ${box_param} ${box_param}"/>
       </geometry>
     </collision>
-    <inertial>
-      <mass value="1"/>
-      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
-    </inertial>
+      <xacro:box_inertial/>    
   </link>
 
   <joint name="tobox" type="fixed">
@@ -439,26 +438,23 @@
 
   <link name="lense">
     <visual>
-      <geometry>
-        <cylinder 
+      <xacro:lens_geometry/>
+      <origin rpy="0 1.571 0" xyz="-0.009 0 0"/>
+      <material name="black"/>
+    </visual>
 
+    <collison>
+      <xacro:lens_geometry/>
+    </collison>
+    <xacro:box_inertial/>
+  </link>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//  <joint name="to_lens" type="fixed">
+//    <parent link="box"/>
+//    <child link="lense"/>
+//  </joint>
+  
+  
 
 
 

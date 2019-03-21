@@ -4,10 +4,10 @@
 
 void dividerCallback(std_msgs::Float32 msg){
 
-	msg.data = msg.data / 2;
-	ros::Rate loop_rate(1);
-	divider_pub.publish(msg);
-	ROS_INFO("I heard: [%.2f]", msg.data);
+//	msg.data = msg.data / 2;
+//	ros::Rate loop_rate(1);
+//	divider_pub.publish(msg);
+//	ROS_INFO("I heard: [%.2f]", msg.data);
 //	while(ros::ok()){
 //		ROS_INFO("I heard: [%.2f]", msg.data);
 //		ros::Duration(1).sleep();
