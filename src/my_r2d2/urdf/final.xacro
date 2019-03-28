@@ -439,7 +439,7 @@
   <link name="lense">
     <visual>
       <xacro:lens_geometry/>
-      <origin rpy="0 1.571 0" xyz="-0.009 0 0"/>
+      <origin rpy="0 1.571 0"/>
       <material name="black"/>
     </visual>
 
@@ -449,12 +449,34 @@
     <xacro:box_inertial/>
   </link>
 
-//  <joint name="to_lens" type="fixed">
-//    <parent link="box"/>
-//    <child link="lense"/>
-//  </joint>
-  
-  
+  <joint name="to_lens" type="fixed">
+    <origin xyz="-0.009 0 0"/>
+    <parent link="box"/>
+    <child link="lense"/>
+  </joint>
+
+
+//------------------------------------------------------------------
+
+
+
+  <link name="base_footprint">
+    
+  </link>
+
+  <joint name="base_footprint_to_base_link" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0.45"/>
+  </joint>
+
+
+
+
+
+
+
+
 
 
 

@@ -398,7 +398,7 @@
       <geometry>
         <cylinder length="0.02" radius="0.0266666666667"/>
       </geometry>
-      <origin rpy="0 1.571 0" xyz="-0.009 0 0"/>
+      <origin rpy="0 1.571 0"/>
       <material name="black"/>
     </visual>
     <collison>
@@ -411,18 +411,26 @@
       <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
     </inertial>
   </link>
+  <joint name="to_lens" type="fixed">
+    <origin xyz="-0.009 0 0"/>
+    <parent link="box"/>
+    <child link="lense"/>
+  </joint>
   
 
-//  
-  <joint name="to_lens" type="fixed">
+
+//------------------------------------------------------------------
+
+
+
+  
+  <link name="base_footprint">
     
-//    
-    <parent link="box"/>
-    
-//    
-    <child link="lense"/>
-    
-//  
+  </link>
+  <joint name="base_footprint_to_base_link" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0.45"/>
   </joint>
 </robot>
 
