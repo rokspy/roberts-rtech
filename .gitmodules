@@ -1,0 +1,3 @@
+[submodule "src/r2d2_navigator"]
+	path = src/r2d2_navigator
+	url = git://github.com/ut-ims-robotics/r2d2_navigator.git
