@@ -2,9 +2,18 @@
 #include "sensor_msgs/Range.h"
 #include "std_msgs/Float32.h"
 #include <sstream>
+#include <cstdlib>
+
+float RandomFloat(float a, float b){
+	float random = ((float) rand()) / (float) RAND_MAX;
+	float diff = b - a;
+	float r = random * diff;
+	return a + r;
+
+}
+
 
 int main (int argc, char **argv){
-
 
 	ros::init(argc, argv, "publ");
 
@@ -19,11 +28,12 @@ int main (int argc, char **argv){
 	msg.field_of_view = 0.7855;
 	msg.min_range = 0.02;
 	msg.max_range = 4.00;
-	msg.range = 1.0'
-	
+	msg.header.frame_id = "base_link";
+		
 	while (ros::ok()){
 
 		//ROS_INFO("%.2f", msg.range);
+		msg.range = RandomFloat(msg.min_range, msg.max_range);		
 
 		publii_pub.publish(msg);
 
