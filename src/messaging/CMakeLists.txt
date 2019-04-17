@@ -33,6 +33,9 @@ catkin_package(
 
 include_directories(include ${catkin_INCLUDE_DIRS})
 
+link_directories(/usr/local/include)
+
+
 add_executable(publ src/publ.cpp)	
 target_link_libraries(publ ${catkin_LIBRARIES})
 add_dependencies(publ messaging_generate_messages_cpp)
