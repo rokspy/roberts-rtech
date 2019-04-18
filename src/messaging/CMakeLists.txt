@@ -40,6 +40,10 @@ add_executable(publ src/publ.cpp)
 target_link_libraries(publ ${catkin_LIBRARIES})
 add_dependencies(publ messaging_generate_messages_cpp)
 
+add_executable(sensor src/ard_sens.cpp)	
+target_link_libraries(sensor ${catkin_LIBRARIES})
+add_dependencies(sensor messaging_generate_messages_cpp)
+
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}

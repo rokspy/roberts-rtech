@@ -28,7 +28,6 @@ int main (int argc, char **argv){
 
 	sensor_msgs::Range msg;
 
-	msg.field_of_view = 0.7855;
 	msg.min_range = 0.02;
 	msg.max_range = 4.00;
 	msg.header.frame_id = "base_link";
@@ -38,7 +37,7 @@ int main (int argc, char **argv){
 	while (ros::ok()){
 
 		//ROS_INFO("%.2f", msg.range);
-		msg.range = RandomFloat(msg.min_range, msg.max_range);		
+		msg.range = RandomFloat(msg.min_range, msg.max_range);	
 
 		publii_pub.publish(msg);
 

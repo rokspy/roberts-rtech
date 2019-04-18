@@ -2,7 +2,6 @@
 	<param name="robot_description" command="$(find xacro)/xacro.py '$(find messaging)/urdf/ranger.urdf'"/>
 	<node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher"/>
 	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find messaging)/config/ranger.rviz"/>
-	<node name="publ" pkg="messaging" type="publ"/>
+	<node name="sensor" pkg="messaging" type="sensor"/>
 	<node pkg="tf" type="static_transform_publisher" name="link1_broadcaster" args="0 0 0 0 0 0 0 base_link 100" />
-
 </launch>	
