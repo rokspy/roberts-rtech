@@ -24,20 +24,14 @@ int main(int argc, char** argv)
 
   moveit::planning_interface::PlanningSceneInterface planning_scene_interface;
 
-  const robot_state::JointModelGroup* joint_model_group =
-      move_group.getCurrentState()->getJointModelGroup(PLANNING_GROUP);
+  moveit::planning_interface::MoveGroupInterface::Plan my_plan;
 
   namespace rvt = rviz_visual_tools;
-  moveit_visual_tools::MoveItVisualTools visual_tools("panda_link0");
-  visual_tools.deleteAllMarkers();
-
-  visual_tools.loadRemoteControl();
+  
+  moveit_visual_tools::MoveItVisualTools visual_tools("base_link");
 
   Eigen::Affine3d text_pose = Eigen::Affine3d::Identity();
-  text_pose.translation().z() = 1.75;
-  visual_tools.publishText(text_pose, "MoveGroupInterface Demo", rvt::WHITE, rvt::XLARGE);
-
-  visual_tools.trigger();
+  text_pose.translation().z() = 1;	
 
   ROS_INFO_NAMED("tutorial", "Reference frame: %s", move_group.getPlanningFrame().c_str());
 
@@ -45,60 +39,44 @@ int main(int argc, char** argv)
 
   // Start the demo
   // ^^^^^^^^^^^^^^^^^^^^^^^^^
-  visual_tools.prompt("Press 'next' in the RvizVisualToolsGui window to start the demo");
 
 
-
-///* Fourth */
-
-
-  // Cartesian Paths
-  // ^^^^^^^^^^^^^^^
-  // You can plan a Cartesian path directly by specifying a list of waypoints
-  // for the end-effector to go through. Note that we are starting
-  // from the new start state above.  The initial pose (start state) does not
-  // need to be added to the waypoint list but adding it can help with visualizations
-  geometry_msgs::Pose target_pose3 = move_group.getCurrentPose().pose;
+  geometry_msgs::Pose target_pose1 = move_group.getCurrentPose().pose;
 
   std::vector<geometry_msgs::Pose> waypoints;
-  waypoints.push_back(target_pose3);
+  waypoints.push_back(target_pose1);
 
-  target_pose3.position.z -= 0.2;
-  waypoints.push_back(target_pose3);  // down
+  target_pose1.position.z -= 0.2;
+  waypoints.push_back(target_pose1);  // down
+  move_group.setStartStateToCurrentState();
 
-  target_pose3.position.y -= 0.2;
-  waypoints.push_back(target_pose3);  // right
+  target_pose1.position.y -= 0.2;
+  waypoints.push_back(target_pose1);  // right
+  
+  target_pose1.position.z += 0.2;
+  target_pose1.position.y += 0.2;
 
-  target_pose3.position.z += 0.2;
-  target_pose3.position.y += 0.2;
-  target_pose3.position.x += 0;
-  waypoints.push_back(target_pose3);  // up and left
-
-  // Cartesian motions are frequently needed to be slower for actions such as approach and retreat
-  // grasp motions. Here we demonstrate how to reduce the speed of the robot arm via a scaling factor
-  // of the maxiumum speed of each joint. Note this is not the speed of the end effector point.
+  waypoints.push_back(target_pose1);  // up and left
+  
   move_group.setMaxVelocityScalingFactor(0.1);
 
-  // We want the Cartesian path to be interpolated at a resolution of 1 cm
-  // which is why we will specify 0.01 as the max step in Cartesian
-  // translation.  We will specify the jump threshold as 0.0, effectively disabling it.
-  // Warning - disabling the jump threshold while operating real hardware can cause
-  // large unpredictable motions of redundant joints and could be a safety issue
   moveit_msgs::RobotTrajectory trajectory;
   const double jump_threshold = 0.0;
   const double eef_step = 0.01;
+
   double fraction = move_group.computeCartesianPath(waypoints, eef_step, jump_threshold, trajectory);
+
   ROS_INFO_NAMED("tutorial", "Visualizing plan 4 (Cartesian path) (%.2f%% acheived)", fraction * 100.0);
 
-  // Visualize the plan in RViz
-  visual_tools.deleteAllMarkers();
-  visual_tools.publishText(text_pose, "Joint Space Goal", rvt::WHITE, rvt::XLARGE);
+  visual_tools.publishText(text_pose, "Motoman sia5d", rvt::RED, rvt::XLARGE);
   visual_tools.publishPath(waypoints, rvt::LIME_GREEN, rvt::SMALL);
   for (std::size_t i = 0; i < waypoints.size(); ++i)
     visual_tools.publishAxisLabeled(waypoints[i], "pt" + std::to_string(i), rvt::SMALL);
+  move_group.move();
   visual_tools.trigger();
-  visual_tools.prompt("Press 'next' in the RvizVisualToolsGui window to continue the demo");
 
+  my_plan.trajectory_=trajectory;
+  move_group.execute(my_plan);
 
   ros::shutdown();
   return 0;
