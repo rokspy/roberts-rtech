@@ -23,13 +23,13 @@
         <joint name="joint_u" value="0" />
     </group_state>
     <group_state name="sky" group="sia5">
-        <joint name="joint_b" value="0.0844" />
+        <joint name="joint_b" value="0" />
         <joint name="joint_e" value="0" />
         <joint name="joint_l" value="0" />
         <joint name="joint_r" value="0" />
         <joint name="joint_s" value="0" />
         <joint name="joint_t" value="0" />
-        <joint name="joint_u" value="1.7316" />
+        <joint name="joint_u" value="1.6729" />
     </group_state>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
     <end_effector name="effector" parent_link="tool0" group="sia5" />

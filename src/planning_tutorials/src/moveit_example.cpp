@@ -328,6 +328,7 @@ while (z == 1){
   target_pose3.position.z += 0.2;
   target_pose3.position.y += 0.2;
   target_pose3.position.x -= 0.2;
+	std::cout << target_pose3.position.x << std::endl;
   waypoints.push_back(target_pose3);  // up and left
 
   // Cartesian motions are frequently needed to be slower for actions such as approach and retreat
@@ -361,7 +362,7 @@ while (z == 1){
 
 //  // Adding/Removing Objects and Attaching/Detaching Objects
 //  // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-//  //
+//  
 //  // Define a collision object ROS message.
 //  moveit_msgs::CollisionObject collision_object;
 //  collision_object.header.frame_id = move_group.getPlanningFrame();
