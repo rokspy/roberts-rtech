@@ -35,7 +35,7 @@ int main(int argc, char** argv)
 
   target_pose1.position.z -= 0.2;
   waypoints.push_back(target_pose1);  // down
-  move_group.setStartStateToCurrentState();
+ // move_group.setStartStateToCurrentState();
 
   target_pose1.position.y -= 0.2;
   waypoints.push_back(target_pose1);  // right
@@ -53,10 +53,13 @@ int main(int argc, char** argv)
   const double jump_threshold = 0.0;
   const double eef_step = 0.01;
 
+  move_group.computeCartesianPath(waypoints, eef_step, jump_threshold, trajectory);
 
-  double fraction = move_group.computeCartesianPath(waypoints, eef_step, jump_threshold, trajectory);
+//  double fraction = move_group.computeCartesianPath(waypoints, eef_step, jump_threshold, trajectory);
 
-  my_plan.trajectory_=trajectory;
+
+
+  my_plan.trajectory_= trajectory;
   move_group.execute(my_plan);
 
   ros::shutdown();
