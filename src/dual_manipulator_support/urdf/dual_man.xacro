@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+
+<!--Generates a urdf from the macrosia5_macro.xacro -->
+
+<robot name="motoman_sia5d" xmlns:xacro="http://ros.org/wiki/xacro">
+	<xacro:include filename="dual_man_macro.xacro"/>
+	<xacro:motoman_sia5d prefix=""/>
+</robot>
+
