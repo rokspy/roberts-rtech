@@ -21,9 +21,12 @@
 	<xacro:include filename="$(find motoman_sia5d_support)/urdf/sia5d_macro.xacro"/>
 	<xacro:motoman_sia5d prefix="1"/>
 
+<!--ur5 part begins-->
 
-	<xacro:include filename="$(find motoman_sia5d_support)/urdf/sia5d_macro.xacro"/>
-	<xacro:motoman_sia5d prefix="2"/>
+	<xacro:include filename="$(find ur_description)/urdf/ur5_robot.urdf.xacro"/>
+
+<!--ur5 part ends -->
+	
 
 <joint name="base_to_robot_1" type="fixed">
 	<parent link="base_link"/>
@@ -31,9 +34,10 @@
 	<origin xyz="0 0.5 0.1"/>
 </joint>
 
+
 <joint name="base_to_robot_2" type="fixed">
 	<parent link="base_link"/>
-	<child link="2base_link"/>
+	<child link="_base_link"/>
 	<origin xyz="0 -0.5 0.1"/>
 </joint>
 

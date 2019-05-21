@@ -26,3 +26,6 @@
 	path = src/panda_moveit_config
 	url = https://github.com/ros-planning/panda_moveit_config.git
 	branch = melodic-devel
+[submodule "src/universal_robot"]
+	path = src/universal_robot
+	url = https://github.com/ros-industrial/universal_robot.git
