@@ -172,8 +172,8 @@ ur5:
     - LazyPRMstar
     - SPARS
     - SPARStwo
-sia6d_ur5_dual:
-  default_planner_config: ""
+sia5d_ur5_dual:
+  default_planner_config: None
   planner_configs:
     - SBL
     - EST

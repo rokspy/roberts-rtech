@@ -16,7 +16,7 @@ controller_list:
       - wrist_1_joint
       - wrist_2_joint
       - wrist_3_joint
-  - name: fake_sia6d_ur5_dual_controller
+  - name: fake_sia5d_ur5_dual_controller
     joints:
       - 1joint_s
       - 1joint_l

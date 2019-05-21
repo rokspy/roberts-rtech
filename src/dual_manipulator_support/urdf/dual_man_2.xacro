@@ -23,7 +23,7 @@
 
 <!--ur5 part begins-->
 
-	<xacro:include filename="$(find ur_description)/urdf/ur5_robot.urdf.xacro"/>
+	<xacro:include filename="/home/roberts/roberts-rtech/src/dual_manipulator_support/ur_description_edit/urdf/ur5_robot.urdf.xacro"/>
 
 <!--ur5 part ends -->
 	

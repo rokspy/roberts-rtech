@@ -48,7 +48,7 @@
         <joint name="shoulder_pan_joint" />
         <chain base_link="_base_link" tip_link="tool0" />
     </group>
-    <group name="sia6d_ur5_dual">
+    <group name="sia5d_ur5_dual">
         <group name="ur5" />
         <group name="sia5d" />
     </group>
@@ -70,7 +70,7 @@
         <joint name="wrist_2_joint" value="0" />
         <joint name="wrist_3_joint" value="0" />
     </group_state>
-    <group_state name="home_pose" group="sia6d_ur5_dual">
+    <group_state name="home_pose" group="sia5d_ur5_dual">
         <joint name="1joint_b" value="0" />
         <joint name="1joint_e" value="0" />
         <joint name="1joint_l" value="0" />
